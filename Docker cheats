@@ -1,0 +1,119 @@
+## List Docker CLI commands
+docker
+docker container --help
+
+## Display Docker version and info
+docker --version
+docker version
+docker info
+
+## Execute Docker image
+docker run hello-world
+
+## List Docker images
+docker image ls
+
+## List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+
+#Remove all other docker version installed
+sudo apt-get remove docker docker-engine docker.io
+
+#run a update
+sudo apt-get update
+
+#Install packages to allow apt to use a repository over HTTPS
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+	
+#Add Docker’s official GPG key:
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+#Verify that you now have the key with the fingerprint
+sudo apt-key fingerprint 0EBFCD88
+
+#Use the following command to set up the stable repository
+sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+(lsb_release -cs) \
+stable"
+
+#Install Docker CE
+sudo apt-get update
+sudo apt-get install docker-ce
+
+#Test installation with Hello world!
+sudo docker run hello-world
+
+#List all the images
+docker image ls
+
+#List containers
+docker container ls --all
+docker container ls -aq
+
+#Create and test the ecercise from : https://docs.docker.com/get-started/part2/#run-the-app
+
+#Build a docker image
+docker build -t friendlyhello .
+
+#Run your built app on a container
+docker run -p 8080:80 friendlyhello
+
+#Run your built app on a container in daemon mode
+docker run -d -p 8080:80 friendlyhello
+
+#Stop the containers
+docker container stop #container_ID
+
+# Create image using this directory's Dockerfile
+docker build -t friendlyhello .  
+
+# Run "friendlyname" mapping port 4000 to 80
+docker run -p 4000:80 friendlyhello  
+
+# Same thing, but in detached mode
+docker run -d -p 4000:80 friendlyhello 
+
+# List all running containers
+docker container ls 
+
+# List all containers, even those not running                               
+docker container ls -a    
+
+# Gracefully stop the specified container         
+docker container stop <hash>
+
+# Force shutdown of the specified container           
+docker container kill <hash>
+
+# Remove specified container from this machine         
+docker container rm <hash> 
+
+# Remove all containers       
+docker container rm $(docker container ls -a -q)     
+
+# List all images on this machine    
+docker image ls -a    
+
+# Remove specified image from this machine                         
+docker image rm <image id>
+
+# Remove all images from this machine
+docker image rm $(docker image ls -a -q)  
+
+# Log in this CLI session using your Docker credentials 
+docker login
+
+# Tag <image> for upload to registry             
+docker tag <image> username/repository:tag
+
+# Upload tagged image to registry  
+docker push username/repository:tag
+
+# Run image from a registry            
+docker run username/repository:tag                   
